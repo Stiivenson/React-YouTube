@@ -3,12 +3,18 @@ import database from '../../constants/db';
 
 import axios from 'axios';
 
+import {
+  authUser,
+  checkToken
+} from './lS-authUser';
+
 const db = database;
 
 export const login = ({
   login,
   password
 }) => (dispatch) => {
+
   let checkUser = false;
   db.map((user) => {
     if (user.login === login) {
@@ -21,13 +27,30 @@ export const login = ({
   checkUser === true ? dispatch({
     type: types.auth.LOGIN_SUCCESS,
     payload: {
-      login: login,
-      password: password
+      login: login
     }
   }) : dispatch({
     type: types.auth.LOGIN_FAIL
   });
+
+  authUser(login);
 };
+
+export const loadUser = () => dispatch => {
+  const {
+    login
+  } = checkToken();
+  console.log('LOGIN', login);
+
+  if (login !== '') {
+    dispatch({
+      type: types.auth.LOGIN_SUCCESS,
+      payload: {
+        login: login
+      }
+    });
+  } else return null;
+}
 
 export const logout = () => dispatch => {
   // dispatch({
