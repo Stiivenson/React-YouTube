@@ -60,3 +60,13 @@
         margin-right: 15px;
     }
 }
+
+.page-search__pannel__btn-modal {
+    font-size: 20px;
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 1;
+        color: rgb(24, 144, 255);
+    }
+}

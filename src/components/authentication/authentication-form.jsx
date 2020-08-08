@@ -30,9 +30,6 @@ const AuthenticationFrom = () => {
       layout='vertical'
       name='basic'
       hideRequiredMark='false'
-      initialValues={{
-        remember: true,
-      }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >

@@ -9,7 +9,6 @@ function VideosList() {
 
   return (
     <div className='video-list__wrapper'>
-      List
       {videos.map((video) => {
         return (
           <div className='video-list__card' key={video.id.videoId}>
