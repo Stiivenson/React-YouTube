@@ -6,6 +6,7 @@ import PrivateRouteBuilder from './route-builder-private';
 
 import App from '../components/app';
 import Authentication from '../components/authentication';
+import Navbar from '../components/navbar';
 
 const routes = [
   {
@@ -23,13 +24,16 @@ const privateRoutes = [
 
 export default function RouteFabric() {
   return (
-    <Switch>
-      {routes.map(({ path, component }) => (
-        <RouteBuilder key={path} path={path} component={component} />
-      ))}
-      {privateRoutes.map(({ path, component }) => (
-        <PrivateRouteBuilder key={path} path={path} component={component} />
-      ))}
-    </Switch>
+    <>
+      <Navbar />
+      <Switch>
+        {routes.map(({ path, component }) => (
+          <RouteBuilder key={path} path={path} component={component} />
+        ))}
+        {privateRoutes.map(({ path, component }) => (
+          <PrivateRouteBuilder key={path} path={path} component={component} />
+        ))}
+      </Switch>
+    </>
   );
 }
