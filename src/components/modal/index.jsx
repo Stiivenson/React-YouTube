@@ -1,31 +1,42 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Form, Input, Select, Slider, InputNumber, Space, Modal } from 'antd';
 
 import { useSelector, useDispatch } from 'react-redux';
-import searchVideos from '../../redux/actions/youtubeAction';
+import { saveQuery } from '../../redux/actions/lS-manageQueries';
 
 import './modal.scss';
 
 const { Option } = Select;
 
 function ModalSaveQuery({ visible, toggleModal, togglePopconfirm }) {
-  // const dispatch = useDispatch();
-  const { isEmpty, query } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
+  const { query } = useSelector((state) => state.video);
+
+  // Set Form instance & 'query' field title
+  const [form] = Form.useForm();
+  form.setFieldsValue({
+    // query: `${query}`,
+    query: 'Kek',
+    sort: 'none',
+  });
 
   const onFinish = (values) => {
+    values.id = uuidv4();
+    values.maxNumb = sliderValue;
+
     console.log('Success:', values);
+    dispatch(saveQuery(values));
+    toggleModal();
+    togglePopconfirm();
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
-  const [form] = Form.useForm();
-  form.setFieldsValue({
-    query: `${query}`,
-  });
-
+  // ChangeSelect
   const onGenderChange = (value) => {
     switch (value) {
       case 'male':
@@ -40,6 +51,7 @@ function ModalSaveQuery({ visible, toggleModal, togglePopconfirm }) {
     }
   };
 
+  // Change Slider
   const [sliderValue, setSlider] = useState(25);
 
   return (
@@ -47,8 +59,7 @@ function ModalSaveQuery({ visible, toggleModal, togglePopconfirm }) {
       title='Сохранить запрос'
       visible={visible}
       onOk={() => {
-        toggleModal();
-        togglePopconfirm();
+        form.submit();
       }}
       okText='Сохранить'
       onCancel={toggleModal}
@@ -64,7 +75,7 @@ function ModalSaveQuery({ visible, toggleModal, togglePopconfirm }) {
       >
         <Space className='page-auth__form__space' size={15} direction='vertical' align='center'>
           <Form.Item label='Запрос' name='query'>
-            <Input disabled='true' />
+            <Input disabled={true} />
           </Form.Item>
 
           <Form.Item label='Название' name='title' rules={[{ required: true }]}>
@@ -92,7 +103,6 @@ function ModalSaveQuery({ visible, toggleModal, togglePopconfirm }) {
               <InputNumber
                 min={1}
                 max={50}
-                style={{ margin: '0 16px' }}
                 value={sliderValue}
                 onChange={(value) => setSlider(value)}
               />

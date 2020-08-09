@@ -5,6 +5,7 @@ import RouteBuilder from './route-builder';
 import PrivateRouteBuilder from './route-builder-private';
 
 import App from '../components/app';
+import Favorites from '../components/favorites';
 import Authentication from '../components/authentication';
 import Navbar from '../components/navbar';
 
@@ -16,6 +17,10 @@ const routes = [
 ];
 
 const privateRoutes = [
+  {
+    path: '/favorites',
+    component: Favorites,
+  },
   {
     path: '/',
     component: App,

@@ -9,9 +9,14 @@ export const auth = {
 };
 
 
-
 export const video = {
     SEARCH: 'video/search',
     SET_EMPTINESS: 'video/empty',
     CHANGE_VIEW: 'video/change_view'
+};
+
+export const query = {
+    ADD: 'query/add',
+    EDIT: 'query/edit',
+    DELETE: 'query/delete'
 };

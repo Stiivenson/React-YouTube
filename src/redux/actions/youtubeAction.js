@@ -2,9 +2,10 @@ import * as types from '../../constants/types';
 
 import axios from 'axios';
 
-
+// Key for YouTube API
 const KEY = 'AIzaSyA8SV9rKMnShujXbhsFl2EFe8bpzW3EmAY';
 
+// Find videos from SearchPage-Input, default query
 export const searchVideos = (q) => (dispatch) => {
     axios.get('https://www.googleapis.com/youtube/v3/search', {
             params: {

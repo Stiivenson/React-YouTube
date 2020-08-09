@@ -10,11 +10,13 @@ import {
 
 const db = database;
 
+// Login form authenticationForm
 export const login = ({
   login,
   password
 }) => (dispatch) => {
 
+  // Check user's registration in DB
   let checkUser = false;
   db.map((user) => {
     if (user.login === login) {
@@ -24,18 +26,22 @@ export const login = ({
     }
   });
 
-  checkUser === true ? dispatch({
-    type: types.auth.LOGIN_SUCCESS,
-    payload: {
-      login: login
-    }
-  }) : dispatch({
-    type: types.auth.LOGIN_FAIL
-  });
-
-  authUser(login);
+  if (checkUser) {
+    dispatch({
+      type: types.auth.LOGIN_SUCCESS,
+      payload: {
+        login: login
+      }
+    });
+    authUser(login);
+  } else {
+    dispatch({
+      type: types.auth.LOGIN_FAIL
+    });
+  }
 };
 
+// Check if User has token - for auto-login
 export const loadUser = () => dispatch => {
   const {
     login

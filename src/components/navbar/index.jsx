@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Row, Col, Menu } from 'antd';
+import { Link } from 'react-router-dom';
 
 import './navbar.scss';
 
@@ -14,8 +15,12 @@ function Navbar() {
           <Col span={4} />
           <Col span={6}>
             <Menu onClick={(e) => handleClick(e.key)} selectedKeys={clicked} mode='horizontal'>
-              <Menu.Item key='search'>Поиск</Menu.Item>
-              <Menu.Item key='favorites'>Избранное</Menu.Item>
+              <Menu.Item key='search'>
+                <Link to='/'>Поиск</Link>
+              </Menu.Item>
+              <Menu.Item key='favorites'>
+                <Link to='/favorites'>Избранное</Link>
+              </Menu.Item>
             </Menu>
           </Col>
           <Col span={9} />
