@@ -65,8 +65,10 @@
     font-size: 20px;
     opacity: 0.5;
 
-    &:hover {
-        opacity: 1;
-        color: rgb(24, 144, 255);
+    &.--active {
+        &:hover {
+            opacity: 1;
+            color: rgb(24, 144, 255);
+        }
     }
 }

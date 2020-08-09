@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Row, Col, Input, Popconfirm } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
@@ -6,14 +7,15 @@ import { HeartOutlined } from '@ant-design/icons';
 import VideosContainer from '../videos';
 import Modal from '../modal';
 
-import { useSelector, useDispatch, useCallbak } from 'react-redux';
-import searchVideos from '../../redux/actions/youtubeAction';
+import { useSelector, useDispatch } from 'react-redux';
+import { searchVideos } from '../../redux/actions/youtubeAction';
 
 import './app.scss';
 
 const { Search } = Input;
 
 function App() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { isEmpty } = useSelector((state) => state.video);
 
@@ -38,10 +40,14 @@ function App() {
       placement='bottom'
       okText='Перейти в раздел "Избранное"'
       cancelText='Отмена'
+      onConfirm={() => history.push('/favorites')}
       onCancel={togglePopconfirm}
       visible={popConfirm}
     >
-      <HeartOutlined className='page-search__pannel__btn-modal' onClick={setVisibility} />
+      <HeartOutlined
+        className={`page-search__pannel__btn-modal ${isEmpty ? '' : '--active'}`}
+        onClick={isEmpty ? null : setVisibility}
+      />
     </Popconfirm>
   );
 
@@ -56,7 +62,8 @@ function App() {
             enterButton='Найти'
             size='large'
             suffix={iconHeart}
-            onSearch={(value) => dispatch(searchVideos(value))}
+            defaultValue={''}
+            onSearch={(value) => (value === '' ? null : dispatch(searchVideos(value)))}
           />
           <VideosContainer />
           <Modal visible={visible} toggleModal={toggleModal} togglePopconfirm={togglePopconfirm} />

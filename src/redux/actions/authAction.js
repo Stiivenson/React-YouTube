@@ -1,16 +1,18 @@
 import * as types from '../../constants/types';
 import database from '../../constants/db';
 
-import axios from 'axios';
-
 import {
   authUser,
   checkToken
 } from './lS-authUser';
 
+import {
+  loadQuery
+} from './lS-manageQueries';
+
 const db = database;
 
-// Login form authenticationForm
+// Login from authenticationForm
 export const login = ({
   login,
   password
@@ -34,6 +36,7 @@ export const login = ({
       }
     });
     authUser(login);
+    dispatch(loadQuery(login));
   } else {
     dispatch({
       type: types.auth.LOGIN_FAIL
@@ -49,6 +52,7 @@ export const loadUser = () => dispatch => {
   console.log('LOGIN', login);
 
   if (login !== '') {
+    dispatch(loadQuery(login));
     dispatch({
       type: types.auth.LOGIN_SUCCESS,
       payload: {
@@ -58,20 +62,25 @@ export const loadUser = () => dispatch => {
   } else return null;
 }
 
-export const logout = () => dispatch => {
-  // dispatch({
-  //   type: types.auth.LOGOUT_SUCCESS
-  // });
-  // dispatch({
-  //   type: types.user.RECET_USER
-  // });
-  // dispatch({
-  //   type: types.map.RECET_MAP
-  // });
-  // dispatch({
-  //   type: types.docTree.REMOVE_DATA
-  // });
-  // dispatch({
-  //   type: types.textEditor.REMOVE_DATA
-  // });
-};
+// Logout from App
+export const logout = () => (dispatch, getState) => {
+  const {
+    login
+  } = getState().user;
+
+  // Remove token
+  let user_collection = JSON.parse(localStorage.getItem('user_collection'));
+  user_collection.map((user) => {
+    if (user.login === login) {
+      user.token = '';
+    }
+  });
+  localStorage.setItem('user_collection', JSON.stringify(user_collection));
+
+  dispatch({
+    type: types.auth.LOGOUT_SUCCESS
+  });
+  dispatch({
+    type: types.video.RESET
+  });
+}

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Form, Input, Button, Space } from 'antd';
+import { Form, Input, Button, Space, message } from 'antd';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/authAction';
 
 const tailLayout = {
@@ -14,6 +14,17 @@ const tailLayout = {
 
 const AuthenticationFrom = () => {
   const dispatch = useDispatch();
+  const { loginFailed } = useSelector((state) => state.user);
+
+  // Show error Message, if login data is incorrect
+  React.useEffect(() => {
+    if (loginFailed) {
+      message.error({
+        content: 'Ошибка ввода логина/пароля! Проверьте данные ещё раз.',
+        className: 'page-auth__error',
+      });
+    }
+  });
 
   const onFinish = (values) => {
     console.log('Success:', values);

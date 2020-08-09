@@ -22,8 +22,17 @@
     }
 }
 
-.page-favorites__list__item {
-    &> :nth-child(1) {
+.page-favorites__list__btns-container {
+    flex-basis: 35%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-favorites__list__btns-container__btn-grp {
+    &>:nth-child(1) {
         margin-right: 25px;
     }
 }

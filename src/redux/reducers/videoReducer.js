@@ -4,7 +4,7 @@ const initialState = {
     videos: [],
     query: '',
     totalResults: 0,
-    videoView: 'list',
+    videoView: 'grid',
     isEmpty: true
 }
 
@@ -34,7 +34,18 @@ export default (state = initialState, {
                         isEmpty: false
                     }
 
-                    default:
-                        return state
+                    case types.video.RESET:
+                        return {
+                            ...state,
+                            videos: [],
+                                query: '',
+                                totalResults: 0,
+                                videoView: 'list',
+                                isEmpty: true
+                        }
+
+
+                        default:
+                            return state
     }
 }

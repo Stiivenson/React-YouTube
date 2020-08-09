@@ -5,6 +5,10 @@
 .page-search__form__slider-container {
     display: flex;
     justify-content: space-between;
+
+    &>div:nth-child(1) {
+        width: 75%;
+    }
 }
 
 .page-search__form__slider {

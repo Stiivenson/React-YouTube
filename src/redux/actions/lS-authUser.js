@@ -8,28 +8,30 @@ export const authUser = (login) => {
     // Get token
     const token = generateToken() + generateToken();
 
-    // Get userCollection forn LocalStorage
+    // Get userCollection from LocalStorage
     let user_collection = JSON.parse(localStorage.getItem("user_collection"));
+    const user = {
+        login: login,
+        token: token,
+        queries: []
+    }
+
     if (user_collection === null) {
         // If userCollection is null - create new with User & token
         user_collection = [];
-
-        const user = {
-            login: login,
-            token: token,
-            queries: []
-        }
         user_collection.push(user);
-
         localStorage.setItem('user_collection', JSON.stringify(user_collection));
     } else {
+        let userExists = false;
         // Find User and add token
-        user_collection.map(user => {
+        user_collection.map((user) => {
             if (user.login === login) {
                 user.token = token;
-                return;
+                userExists = true;
             }
         });
+        // If new User - add to Collection
+        if (!userExists) user_collection.push(user);
         localStorage.setItem('user_collection', JSON.stringify(user_collection));
     }
 }
@@ -50,7 +52,6 @@ export const checkToken = () => {
     user_collection.map(user => {
         if (user.token !== '') {
             authorizedUser.login = user.login;
-            return;
         }
     });
     return authorizedUser;

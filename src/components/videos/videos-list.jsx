@@ -15,6 +15,7 @@ function VideosList() {
             <div className='video-list__card__video-wrapper'>
               <iframe
                 src={'https://www.youtube.com/embed/' + video.id.videoId}
+                title={video.snippet.title}
                 frameBorder='0'
                 allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
                 allowFullScreen

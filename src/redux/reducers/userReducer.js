@@ -2,7 +2,8 @@ import * as types from '../../constants/types';
 
 const initialState = {
   login: '',
-  isAuthenticated: false
+  isAuthenticated: false,
+  loginFailed: false
 };
 
 export default (state = initialState, {
@@ -17,7 +18,21 @@ export default (state = initialState, {
           isAuthenticated: true
       };
 
-    default:
-      return state;
+    case types.auth.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        login: '',
+          isAuthenticated: false,
+          loginFailed: false
+      }
+
+      case types.auth.LOGIN_FAIL:
+        return {
+          ...state,
+          loginFailed: true
+        }
+
+        default:
+          return state;
   }
 };

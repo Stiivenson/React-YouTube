@@ -4,8 +4,8 @@ import { Switch } from 'react-router-dom';
 import RouteBuilder from './route-builder';
 import PrivateRouteBuilder from './route-builder-private';
 
-import App from '../components/app';
-import Favorites from '../components/favorites';
+import App from '../components/page-app';
+import Favorites from '../components/page-favorites';
 import Authentication from '../components/authentication';
 import Navbar from '../components/navbar';
 
