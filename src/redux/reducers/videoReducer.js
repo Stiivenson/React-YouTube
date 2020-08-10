@@ -1,5 +1,6 @@
 import * as types from '../../constants/types';
 
+
 const initialState = {
     videos: [],
     query: '',

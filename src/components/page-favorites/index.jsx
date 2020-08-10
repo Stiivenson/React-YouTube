@@ -6,7 +6,7 @@ import { Row, Col, List, Typography, Button } from 'antd';
 import Modal from '../modal';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { callSavedQuery } from '../../redux/actions/youtubeAction';
+import { callSavedQuery, callDefaultQuery } from '../../redux/actions/youtubeAction';
 import { deleteQuery } from '../../redux/actions/lS-manageQueries';
 
 import './favorites.scss';
@@ -46,7 +46,9 @@ function Favorites() {
                   <Button
                     type='dashed'
                     onClick={() => {
-                      dispatch(callSavedQuery(item));
+                      item.id === '12345'
+                        ? dispatch(callDefaultQuery(item))
+                        : dispatch(callSavedQuery(item));
                       history.push('/');
                     }}
                   >

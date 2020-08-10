@@ -1,9 +1,10 @@
 import * as types from '../../constants/types';
+import videosDefault from '../../constants/videos-default'
 
 import axios from 'axios';
 
 // Key for YouTube API
-const KEY = 'AIzaSyBtgtR9X-Mx1vVRMQIP5XQXzZLKCyMASiM';
+const KEY = 'AIzaSyDk0eBY11xZHzoTlmxnybvMxEoD8jfYtNg';
 
 // Find videos from SearchPage-Input, default query
 export const searchVideos = (q) => (dispatch) => {
@@ -68,4 +69,22 @@ export const callSavedQuery = ({
         .catch(err => {
             console.log(err);
         });
+}
+
+
+// Find videos with custom parametres
+export const callDefaultQuery = ({
+    query
+}) => (dispatch) => {
+    dispatch({
+        type: types.video.SEARCH,
+        payload: {
+            videos: videosDefault,
+            query,
+            totalResults: 12
+        }
+    });
+    dispatch({
+        type: types.video.SET_EMPTINESS
+    });
 }

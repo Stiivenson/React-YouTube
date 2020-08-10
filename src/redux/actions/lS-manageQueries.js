@@ -12,12 +12,23 @@ const getUserIndex = (user_collection, login) => {
 // Initial Query loading from LocalStorage
 export const loadQuery = (login) => (dispatch) => {
     let queryArray = [];
+    let defaultQuery = {
+        id: '12345',
+        query: 'cats',
+        title: 'Загрузить видео без сети',
+        sort: "rating",
+        maxNumb: 12
+    }
+
+
     let user_collection = JSON.parse(localStorage.getItem("user_collection"));
     user_collection.map(user => {
         if (user.login === login) {
             queryArray = user.queries;
         }
     });
+
+    queryArray.push(defaultQuery);
 
     dispatch({
         type: types.query.SET,
