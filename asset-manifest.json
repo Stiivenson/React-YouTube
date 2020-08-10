@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/React-YouTube/static/css/main.7d165f43.chunk.css",
+    "main.js": "/React-YouTube/static/js/main.e96bf62e.chunk.js",
+    "main.js.map": "/React-YouTube/static/js/main.e96bf62e.chunk.js.map",
+    "runtime-main.js": "/React-YouTube/static/js/runtime-main.cec42d26.js",
+    "runtime-main.js.map": "/React-YouTube/static/js/runtime-main.cec42d26.js.map",
+    "static/css/2.9c8c8187.chunk.css": "/React-YouTube/static/css/2.9c8c8187.chunk.css",
+    "static/js/2.732c3f5e.chunk.js": "/React-YouTube/static/js/2.732c3f5e.chunk.js",
+    "static/js/2.732c3f5e.chunk.js.map": "/React-YouTube/static/js/2.732c3f5e.chunk.js.map",
+    "index.html": "/React-YouTube/index.html",
+    "precache-manifest.f583ab558fb18efca0df37fd5b9e6e60.js": "/React-YouTube/precache-manifest.f583ab558fb18efca0df37fd5b9e6e60.js",
+    "service-worker.js": "/React-YouTube/service-worker.js",
+    "static/css/2.9c8c8187.chunk.css.map": "/React-YouTube/static/css/2.9c8c8187.chunk.css.map",
+    "static/css/main.7d165f43.chunk.css.map": "/React-YouTube/static/css/main.7d165f43.chunk.css.map",
+    "static/js/2.732c3f5e.chunk.js.LICENSE.txt": "/React-YouTube/static/js/2.732c3f5e.chunk.js.LICENSE.txt",
+    "static/media/sibdev-logo.svg": "/React-YouTube/static/media/sibdev-logo.4e9243ef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cec42d26.js",
+    "static/css/2.9c8c8187.chunk.css",
+    "static/js/2.732c3f5e.chunk.js",
+    "static/css/main.7d165f43.chunk.css",
+    "static/js/main.e96bf62e.chunk.js"
+  ]
+}
